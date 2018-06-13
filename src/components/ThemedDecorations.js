@@ -3,15 +3,13 @@ import React from 'react';
 
 export default class ThemedDecorations extends React.Component {
   render(){
-    const childrenWithClass = React.Children.map(this.props.children, child => {
-    return (
-      <div className={this.props.theme}>{child}</div>
-      );
-    });
+    const childrenWithExtraProp = React.Children.map(this.props.children, child => React.cloneElement(child, {
+      className: this.props.theme,
+    }));
 
     return (
-      <div className="theme">
-        {childrenWithClass}
+      <div>
+        {childrenWithExtraProp}
       </div>
     );
   }
